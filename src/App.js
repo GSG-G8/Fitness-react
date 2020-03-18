@@ -1,26 +1,31 @@
+/* eslint-disable lines-between-class-members */
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Days from './Days';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    days: [],
+  };
+  handleChangeAddDays = myday => {
+    this.setState({ days: [...this.state.days, myday] });
+  };
+  handleChangeRemoveDays = myday => {
+    const arr = this.state.days.splice(this.state.days.indexOf(myday));
+    this.setState({ days: this.state.days });
+  };
+  render() {
+    console.log(this.state.days);
+    return (
+      <div className="App">
+        <Days
+          days={this.state.days}
+          addMethod={this.handleChangeAddDays}
+          removeMethod={this.handleChangeRemoveDays}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
