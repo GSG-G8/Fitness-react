@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import Days from './Days';
 import DisplayDays from './DisplayDays';
-import Exercise from './Excersise';
+import DisplayData from './DisplayData';
 
 class App extends React.Component {
   state = {
@@ -27,7 +27,6 @@ class App extends React.Component {
   };
 
   handleChangeAddExcer = (day, excersise) => {
-    console.log({ day, excersise });
     const { myExcersise } = this.state;
     this.setState({
       myExcersise: {
@@ -49,8 +48,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.days);
-    console.log('my excersise', this.state.myExcersise);
     return (
       <div className="App">
         <Days
@@ -63,6 +60,10 @@ class App extends React.Component {
           excersise={this.state.myExcersise}
           addMethod={this.handleChangeAddExcer}
           removeMethod={this.handleChangeRemoveExcer}
+        />
+        <DisplayData
+        days={this.state.days}
+        excersise={this.state.myExcersise}
         />
       </div>
     );
